@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>بطاقة تهنئة</title>
+<style>
+body{
+  font-family: Arial;
+  text-align:center;
+  background:#f5f5f5;
+}
+
+.container{
+  margin-top:40px;
+}
+
+canvas{
+  border:1px solid #ddd;
+  margin-top:20px;
+}
+
+input{
+  padding:10px;
+  font-size:16px;
+}
+
+button{
+  padding:10px 20px;
+  font-size:16px;
+  cursor:pointer;
+  margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>اكتب اسمك لتحصل على بطاقة التهنئة</h2>
+
+<input type="text" id="name" placeholder="اكتب اسمك هنا">
+
+<br>
+
+<button onclick="generateCard()">إنشاء البطاقة</button>
+
+<br>
+
+<canvas id="canvas" width="1080" height="1350"></canvas>
+
+<br>
+
+<button onclick="downloadCard()">تحميل البطاقة</button>
+
+</div>
+
+<script>
+
+let canvas = document.getElementById("canvas");
+let ctx = canvas.getContext("2d");
+
+let background = new Image();
+background.src = "card.png";
+
+background.onload = function(){
+  drawBaseCard();
+}
+
+function drawBaseCard(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+}
+
+function generateCard(){
+
+  let name = document.getElementById("name").value;
+
+  drawBaseCard();
+
+  ctx.font = "50px Arial";
+  ctx.fillStyle = "#ffffff";
+  ctx.textAlign = "center";
+
+  ctx.fillText(name, canvas.width/2, 560); // ارفع أو نزل الرقم حسب المكان المناسب
+}
+
+function downloadCard(){
+  let link = document.createElement("a");
+  link.download = "eid-card.png";
+  link.href = canvas.toDataURL("image/png");
+  link.click();
+}
+
+</script>
+
+</body>
+</html>
