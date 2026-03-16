@@ -87,7 +87,7 @@ ctx.fillStyle = "#ffffff";
 ctx.textAlign = "center";
 
 let maxWidth = 380; // عرض المربع
-let lineHeight = 200;
+let lineHeight = 50;
 
 let words = name.split(" ");
 let lines = [];
@@ -109,7 +109,7 @@ lines.push(currentLine);
 
 // رسم الأسطر
 for(let i=0;i<lines.length;i++){
-  ctx.fillText(lines[i], canvas.width/2, 385 + (i * lineHeight));
+  ctx.fillText(lines[i], canvas.width/2, 700 + (i * lineHeight));
 }
 }
 
